@@ -2,11 +2,10 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerBehaviour : Player
 {
     public Rigidbody2D myrigidbody;
-    private bool grounded;
-    private float jumpForce = 15;
+    public float direction;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,33 +16,16 @@ public class NewBehaviourScript : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetAxis("Horizontal")<0)
+        if (Input.GetAxis("Horizontal") < 0)
         {
             MoveLeft();
         }
 
-        if (Input.GetAxis("Horizontal")>0)
+        if (Input.GetAxis("Horizontal") > 0)
         {
             MoveRight();
         }
 
-        if (grounded)
-        {
-            if (Input.GetButtonDown("Jump"))
-            {
-                Jump();
-            }
-        }
-    }
-
-    void FixedUpdate()
-    {
-        grounded = Physics2D.CircleCast(transform.position, 2.45f, Vector2.down, 0.05f);
-    }
-
-    private void Jump()
-    {
-        myrigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
     private void MoveLeft()
@@ -55,4 +37,5 @@ public class NewBehaviourScript : MonoBehaviour
     {
         myrigidbody.AddForce(Vector2.right * 10, ForceMode2D.Force);
     }
+
 }
