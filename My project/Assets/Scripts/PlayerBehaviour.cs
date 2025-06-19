@@ -7,7 +7,6 @@ using UnityEngine.Scripting.APIUpdating;
 public class PlayerBehaviour : Player
 {
     public Rigidbody2D myrigidbody;
-    private float direction;
     private float horizontalMove;
     private bool facingRight;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,7 +40,7 @@ public class PlayerBehaviour : Player
             Flip();
         }
         
-        animator.SetBool("Jumping", false);
+        
     }
 
     public void Flip()
@@ -52,14 +51,15 @@ public class PlayerBehaviour : Player
         transform.localScale = localScale;
     }
 
+
     private void MoveLeft()
     {
-        myrigidbody.AddForce(Vector2.left*10, ForceMode2D.Force);
+        myrigidbody.AddForce(Vector2.left * 0.3f, ForceMode2D.Impulse);
     }
 
     private void MoveRight()
     {
-        myrigidbody.AddForce(Vector2.right*10, ForceMode2D.Force);
+        myrigidbody.AddForce(Vector2.right * 0.3f, ForceMode2D.Impulse);
     }
 
 }

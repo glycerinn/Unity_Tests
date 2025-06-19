@@ -1,3 +1,4 @@
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class PlayerJump : PlayerBehaviour
@@ -14,20 +15,18 @@ public class PlayerJump : PlayerBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (grounded)
+        if (grounded && Input.GetButtonDown("Jump"))
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-                Jump();
-                animator.SetBool("Jumping", true);
-            }
+            Jump();
+            animator.SetBool("Jumping", true);
         }
+        
+        animator.SetBool("Jumping", !grounded);
     }
 
     void FixedUpdate()
     {
         grounded = Physics2D.CircleCast(transform.position - transform.right * 0.01f, 3f, Vector2.down, 0.05f);
-
     }
 
     private void Jump()

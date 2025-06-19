@@ -104,6 +104,7 @@ MonoBehaviour:
   myrigidbody: {fileID: 687602677594428226}
   bulletDirection: 0
   gracetime: 2
+  damage: 20
 --- !u!50 &687602677594428226
 Rigidbody2D:
   serializedVersion: 5

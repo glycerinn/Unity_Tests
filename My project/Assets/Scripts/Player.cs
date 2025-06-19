@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : Entity
+public class Player : Entity, IDamageable
 {
     public float playerhealth;
     public Animator animator;
