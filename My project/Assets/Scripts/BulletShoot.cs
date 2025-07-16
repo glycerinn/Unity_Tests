@@ -1,3 +1,5 @@
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletShoot : MonoBehaviour
@@ -5,25 +7,31 @@ public class BulletShoot : MonoBehaviour
     public GameObject bulletObj;
     public KeyCode bulletkey;
     public Transform bulletSpawn;
-    private float direction;
+    private float cooldown = 1;
+    private float currentCooldown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        direction = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown(bulletkey))
+        currentCooldown -= Time.deltaTime;
+        if (currentCooldown <= 0)
         {
-            GameObject bullet = Instantiate(bulletObj, bulletSpawn.position, Quaternion.identity);
-            if (direction != 0)
-                bullet.GetComponent<Bullet>().bulletDirection = direction;
-            else
-                bullet.GetComponent<Bullet>().bulletDirection = 1;
+            if (Input.GetKeyDown(bulletkey))
+            {
+                SpawnBullet();
+                currentCooldown = cooldown;
+            }
         }
-        ;
+    }
+
+    public void SpawnBullet()
+    {
+        GameObject bullet = Instantiate(bulletObj, bulletSpawn.position, quaternion.identity);
+        bullet.GetComponent<Bullet>().bulletDirection = GetComponent<PlayerBehaviour>().facingRight;
     }
 }

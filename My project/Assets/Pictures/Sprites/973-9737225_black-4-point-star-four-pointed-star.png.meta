@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 19f6b16e675865f418423ee65221ece8
+guid: 52ea5a4cf7c6c8d44be1d45be3bfa298
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3006016691258925281
-    second: pngimg.com - cannonball_PNG15_0
+      213: -7557055823871795389
+    second: 973-9737225_black-4-point-star-four-pointed-star_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pngimg.com - cannonball_PNG15_0
+      name: 973-9737225_black-4-point-star-four-pointed-star_0
       rect:
         serializedVersion: 2
-        x: 526
-        y: 107
-        width: 895
-        height: 886
+        x: 0
+        y: 0
+        width: 754
+        height: 749
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e0226f014487b920800000000000000
-      internalID: 3006016691258925281
+      spriteID: 34f135664c1ff1790800000000000000
+      internalID: -7557055823871795389
       vertices: []
       indices: 
       edges: []

@@ -1,78 +1,64 @@
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     public Rigidbody2D myrigidbody;
-    public float bulletDirection;
     public float gracetime;
     public float damage;
+    public float speed;
+    public bool bulletDirection;
+    GameObject player;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        myrigidbody = GetComponent<Rigidbody2D>();
+        bulletDirection = player.GetComponent<PlayerBehaviour>().facingRight;
     }
 
     // Update is called once per frame
     void Update()
     {
         gracetime -= Time.deltaTime;
-        if (bulletDirection < 0)
+        if (bulletDirection == false )
         {
-            MoveBulletLeft();
+            myrigidbody.linearVelocity = Vector2.left * speed;
+        }
+        else if (bulletDirection == true )
+        {
+            myrigidbody.linearVelocity = Vector2.right * speed;
         }
 
-        if (bulletDirection > 0)
-        {
-            MoveBulletRight();
-        }
+        // else
+        // {
+        //     myrigidbody.linearVelocity = new Vector2(bulletDirection * speed, transform.position.y) * Time.deltaTime;
+        // }
+
         if (gracetime < 0)
         {
             Destroy(gameObject);
         }
     }
 
-    private void MoveBulletLeft()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        myrigidbody.AddForce(Vector2.left * 5, ForceMode2D.Impulse);
-    }
-
-    private void MoveBulletRight()
-    {
-        myrigidbody.AddForce(Vector2.right * 5, ForceMode2D.Impulse);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        IDamageable damageable = other.GetComponent<Enemy>();
-        if (damageable != null)
-        {
-            damageable.takeDamage(damage);
-            Destroy(gameObject);
+        if(!other.CompareTag("Enemy") && !other.CompareTag("Ground")){ 
+            return;
         }
+        other.GetComponent<IDamageable>().takeDamage(damage);
+        Destroy(gameObject, 0.01f);
         
     }
 
-    //     void Update()
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.CompareTag("Enemy"))
     //     {
-    //         transform.Translate(0.1f, 0, 0);
-    //         gracetime -= Time.deltaTime;
-    //         if (gracetime < 0)
-    //         {
-    //             Destroy(gameObject);
-    //         }
+    //         other.GetComponent<IDamageable>().takeDamage(damage);
+    //         Destroy(gameObject);
     //     }
-
-    //     public void SetDirection(float _direction)
-    //     {
-    //         bulletDirection = _direction;
-    //         gameObject.SetActive(true);
-
-    //         float localScaleX = transform.localScale.x;
-    //         if (Mathf.Sign(localScaleX) != _direction)
-    //         {
-    //             localScaleX = -localScaleX;
-    //         }
-
-    //         transform.localScale = new Vector3(localScaleX, transform.localScale.y, transform.localScale.z);
-    //    }
+    // }  
 }

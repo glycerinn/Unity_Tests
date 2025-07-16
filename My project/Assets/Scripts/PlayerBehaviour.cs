@@ -7,29 +7,30 @@ using UnityEngine.Scripting.APIUpdating;
 public class PlayerBehaviour : Player
 {
     public Rigidbody2D myrigidbody;
-    private float horizontalMove;
-    private bool facingRight;
+    public bool facingRight;
+    public Vector2 moveDirection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         facingRight = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
+        float horizontalMove = Input.GetAxis("Horizontal");
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            MoveLeft();
-        }
+        float Vertical = Input.GetAxis("Vertical");
+        moveDirection = new Vector3(horizontalMove, 0f, Vertical).normalized;
 
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            MoveRight();
-        }
+        // if (Input.GetAxis("Horizontal") < 0)
+        // {
+        //     MoveLeft();
+        // }
+        // else if (Input.GetAxis("Horizontal") > 0)
+        // {
+        //     MoveRight();
+        // }
 
         if (!facingRight && Input.GetAxis("Horizontal") > 0)
         {
@@ -39,8 +40,8 @@ public class PlayerBehaviour : Player
         {
             Flip();
         }
-        
-        
+
+        myrigidbody.AddForce(moveDirection * 0.1f, ForceMode2D.Impulse);
     }
 
     public void Flip()
@@ -52,14 +53,14 @@ public class PlayerBehaviour : Player
     }
 
 
-    private void MoveLeft()
-    {
-        myrigidbody.AddForce(Vector2.left * 0.3f, ForceMode2D.Impulse);
-    }
+    // private void MoveLeft()
+    // {
+    //     myrigidbody.AddForce(Vector2.left * 0.07f, ForceMode2D.Impulse);
+    // }
 
-    private void MoveRight()
-    {
-        myrigidbody.AddForce(Vector2.right * 0.3f, ForceMode2D.Impulse);
-    }
+    // private void MoveRight()
+    // {
+    //     myrigidbody.AddForce(Vector2.right * 0.07f, ForceMode2D.Impulse);
+    // }
 
 }
