@@ -18,7 +18,7 @@ public class PlayerJump : PlayerBehaviour
     {
         if (grounded)
         {
-            totalJump = 2;
+            totalJump = 1;
         }
         if (totalJump > 0 && Input.GetButtonDown("Jump"))
         {

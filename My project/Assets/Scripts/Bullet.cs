@@ -45,12 +45,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!other.CompareTag("Enemy") && !other.CompareTag("Ground")){ 
-            return;
-        }
-        other.GetComponent<IDamageable>().takeDamage(damage);
-        Destroy(gameObject, 0.01f);
-        
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        if (damageable == null || other.CompareTag("Player")) return;
+        Destroy(gameObject);
+        damageable.takeDamage(damage);
+
+        // if(!other.CompareTag("Enemy") && !other.CompareTag("Ground")){ 
+        //     return;
+        // }
+        // other.GetComponent<IDamageable>().takeDamage(damage);
     }
 
     // void OnTriggerEnter2D(Collider2D other)
