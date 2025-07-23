@@ -21,11 +21,15 @@ public class Enemy : Entity
     void Update()
     {
         healthBar.fillAmount = health/Enemyhealth;
-        if (health <= 0)
+        if (health <= 50)
         {
-            animator.SetBool("Dead", true);
-            Destroy(gameObject, 1.5f);
+            healthBar.color = Color.red;
         }
+        if (health <= 0)
+            {
+                animator.SetBool("Dead", true);
+                Destroy(gameObject, 1.5f);
+            }
     }
 
     void OnTriggerEnter2D(Collider2D other)
