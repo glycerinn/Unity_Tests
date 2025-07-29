@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Enemy : Entity
 {
     public float Enemyhealth;
-    public Color newColor;
+    // public Color newColor;
     public SpriteRenderer rend;
     public Animator animator;
     public Image healthBar;
@@ -32,24 +32,19 @@ public class Enemy : Entity
             }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Bullet"))
-        {
-            StartCoroutine(flashRed());
-        }
-    }
-
-    public IEnumerator flashRed()
-    {
-        rend.color = newColor;
-        yield return new WaitForSeconds(0.5f);
-        rend.color = Color.white;
-    }
-
-    // public IEnumerator deathAnim()
+    // void OnTriggerEnter2D(Collider2D other)
     // {
+    //     if (other.gameObject.CompareTag("Bullet"))
+    //     {
+    //         StartCoroutine(flashRed());
+    //     }
+    // }
 
+    // public IEnumerator flashRed()
+    // {
+    //     rend.color = newColor;
+    //     yield return new WaitForSeconds(0.5f);
+    //     rend.color = Color.white;
     // }
 
 }
