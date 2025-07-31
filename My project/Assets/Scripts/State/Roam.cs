@@ -20,7 +20,6 @@ public class Roam : State
     // Update is called once per frame
     void Update()
     {
-        // Vector2 point = currentPoint.position - transform.position;
         if (currentPoint.transform == pointB.transform)
         {
             myrigidbody.linearVelocity = new Vector2(speed, 0);
@@ -30,14 +29,14 @@ public class Roam : State
             myrigidbody.linearVelocity = new Vector2(-speed, 0);
         }
 
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
-        {
-            transform.localScale = new Vector3(-6, 6, 1);
-            currentPoint = pointA.transform;
-        }
-        if (Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
+        if (Vector2.Distance(currentPoint.position, transform.position) < 5f && currentPoint == pointB.transform)
         {
             transform.localScale = new Vector3(6, 6, 1);
+            currentPoint = pointA.transform;
+        }
+        if (Vector2.Distance(currentPoint.position, transform.position) < 5f && currentPoint == pointA.transform)
+        {
+            transform.localScale = new Vector3(-6, 6, 1);
             currentPoint = pointB.transform;
         }
     }
