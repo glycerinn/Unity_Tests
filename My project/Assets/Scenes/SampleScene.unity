@@ -12896,6 +12896,15 @@ MonoBehaviour:
   myrigidbody: {fileID: 1991029980}
   facingRight: 0
   moveDirection: {x: 0, y: 0}
+  move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 28767895-1d51-400e-a105-462793858ab4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!95 &1991029982
 Animator:
   serializedVersion: 7
@@ -12936,6 +12945,15 @@ MonoBehaviour:
   myrigidbody: {fileID: 1991029980}
   facingRight: 0
   moveDirection: {x: 0, y: 0}
+  move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 47f594d5-dbb6-4333-bf39-19af8b038104
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
   totalJump: 1
 --- !u!114 &1991029984
 MonoBehaviour:

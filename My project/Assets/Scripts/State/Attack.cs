@@ -23,7 +23,6 @@ public class Attack : State
         if (attackTimer <= 0)
         {
             animator.SetBool("Roam", false);
-            StartCoroutine(AttackRoutine());
             attackTimer = attackCooldown;
         }
         if (enemyDistance >= 6)
@@ -41,6 +40,7 @@ public class Attack : State
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        StartCoroutine(AttackRoutine());
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (collision.gameObject.CompareTag("Player"))
         {
